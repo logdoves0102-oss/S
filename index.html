@@ -1,0 +1,927 @@
+<title>久楽大学</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@500;600;700&display=swap">
+
+<style>
+/* Layout: institutional grid — utility bar, crest header, horizontal nav,
+   news/sidebar split, full-width academic calendar, dense footer. */
+:root{
+  --ink:#10131c;
+  --navy:#1b2a4e;
+  --navy-deep:#101a33;
+  --gold:#9a7526;
+  --crimson:#93262f;
+  --paper:#ffffff;
+  --paper-2:#f3f5f9;
+  --paper-3:#e9edf4;
+  --line:#d4dae5;
+  --muted:#59627a;
+  --shadow:rgba(16,26,51,.10);
+  --serif:"Noto Serif JP",'Hiragino Mincho ProN','Yu Mincho',serif;
+  --sans:"Noto Sans JP",'Hiragino Sans','Yu Gothic',system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#e8ecf5;
+    --navy:#9fb6e4;
+    --navy-deep:#0b1122;
+    --gold:#d2a94e;
+    --crimson:#e0828a;
+    --paper:#0e1424;
+    --paper-2:#141c30;
+    --paper-3:#1b2440;
+    --line:#2a3454;
+    --muted:#9aa4bd;
+    --shadow:rgba(0,0,0,.5);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#e8ecf5;
+  --navy:#9fb6e4;
+  --navy-deep:#0b1122;
+  --gold:#d2a94e;
+  --crimson:#e0828a;
+  --paper:#0e1424;
+  --paper-2:#141c30;
+  --paper-3:#1b2440;
+  --line:#2a3454;
+  --muted:#9aa4bd;
+  --shadow:rgba(0,0,0,.5);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:"";position:fixed;inset:0 0 auto;
+  height:env(safe-area-inset-top,0px);z-index:40;background:var(--navy-deep);
+}
+a{color:inherit}
+h1,h2,h3,h4{margin:0;font-family:var(--serif);font-weight:600;text-wrap:balance;line-height:1.4}
+p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.wrap{
+  max-width:1120px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+
+/* ---------- utility bar ---------- */
+.utility{background:var(--navy-deep);color:#dfe5f2;font-size:12px}
+.utility .wrap{display:flex;justify-content:flex-end;align-items:center;gap:18px;padding-block:7px;flex-wrap:wrap}
+.utility a{text-decoration:none;opacity:.82}
+.utility a:hover{opacity:1;text-decoration:underline}
+.langs{display:flex;gap:1px;margin-left:4px}
+.langs button{
+  font:inherit;font-size:11px;letter-spacing:.04em;cursor:pointer;
+  border:1px solid rgba(255,255,255,.22);background:transparent;color:#dfe5f2;
+  padding:2px 9px;
+}
+.langs button[aria-pressed="true"]{background:#dfe5f2;color:var(--navy-deep);border-color:#dfe5f2;font-weight:700}
+
+/* ---------- masthead ---------- */
+.masthead{background:var(--paper);border-bottom:1px solid var(--line)}
+.masthead .wrap{display:flex;align-items:center;gap:16px;padding-block:14px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:13px;text-decoration:none;min-width:0}
+.crest{flex:none;width:46px;height:46px}
+.brand-text{min-width:0}
+.brand-ja{font-family:var(--serif);font-size:25px;font-weight:700;letter-spacing:.14em;line-height:1.15;display:block}
+.brand-en{font-size:10px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;display:block;margin-top:3px}
+.masthead-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.searchbox{display:flex;border:1px solid var(--line);background:var(--paper-2)}
+.searchbox input{
+  font:inherit;font-size:13px;border:0;background:transparent;color:var(--ink);
+  padding:7px 10px;width:150px;min-width:0;
+}
+.searchbox input::placeholder{color:var(--muted)}
+.searchbox button{
+  font:inherit;font-size:12px;cursor:pointer;border:0;border-left:1px solid var(--line);
+  background:var(--navy);color:#fff;padding:0 13px;
+}
+:root[data-theme="dark"] .searchbox button,
+:root:not([data-theme="light"]) .searchbox button{color:var(--navy-deep)}
+
+/* ---------- main nav ---------- */
+.nav{background:var(--navy);position:sticky;top:env(safe-area-inset-top,0px);z-index:30;box-shadow:0 1px 0 var(--shadow)}
+.nav .wrap{display:flex;overflow-x:auto;scrollbar-width:none}
+.nav .wrap::-webkit-scrollbar{display:none}
+.nav a{
+  flex:1 0 auto;text-align:center;text-decoration:none;color:#fff;
+  font-size:13.5px;font-weight:500;letter-spacing:.06em;padding:13px 18px;
+  border-left:1px solid rgba(255,255,255,.14);white-space:nowrap;
+}
+.nav a:last-child{border-right:1px solid rgba(255,255,255,.14)}
+.nav a:hover{background:rgba(255,255,255,.13)}
+:root[data-theme="dark"] .nav a,
+:root:not([data-theme="light"]) .nav a{color:var(--navy-deep)}
+:root[data-theme="dark"] .nav a{color:#0b1122}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;color:#fff;overflow:hidden;
+  background:
+    linear-gradient(118deg,rgba(11,17,34,.88) 0%,rgba(27,42,78,.62) 48%,rgba(27,42,78,.22) 100%),
+    repeating-linear-gradient(74deg,rgba(255,255,255,.035) 0 1px,rgba(255,255,255,0) 1px 7px),
+    linear-gradient(200deg,#2d4376 0%,#16254a 55%,#0d1529 100%);
+}
+.hero::after{
+  content:"";position:absolute;right:-6%;bottom:-38%;width:460px;height:460px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.13);
+  box-shadow:0 0 0 46px rgba(255,255,255,.035);
+}
+.hero .wrap{position:relative;z-index:1;padding-block:clamp(44px,8vw,86px)}
+.hero-kicker{
+  font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+  color:rgba(255,255,255,.72);margin-bottom:20px;
+}
+.hero h1{
+  font-size:clamp(30px,6.2vw,52px);font-weight:700;letter-spacing:.07em;line-height:1.3;
+  text-shadow:0 2px 24px rgba(0,0,0,.3);
+}
+.hero p{max-width:34em;margin-top:18px;color:rgba(255,255,255,.88);font-size:14.5px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.hero-actions a{
+  text-decoration:none;font-size:13px;font-weight:500;letter-spacing:.05em;
+  padding:11px 20px;border:1px solid rgba(255,255,255,.4);color:#fff;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.hero-actions a:hover{background:rgba(255,255,255,.12)}
+.hero-actions a.solid{background:var(--gold);border-color:var(--gold);color:#17120a;font-weight:700}
+.hero-actions a.solid:hover{filter:brightness(1.08)}
+
+/* ---------- section scaffolding ---------- */
+section{padding-block:clamp(34px,5vw,56px)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.sec-title{display:flex;align-items:baseline;gap:12px}
+.sec-title h2{font-size:22px;letter-spacing:.1em}
+.sec-title .en{font-size:10px;letter-spacing:.24em;color:var(--gold);text-transform:uppercase;font-family:var(--sans);font-weight:700}
+.sec-head .more{font-size:12px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.sec-head .more:hover{color:var(--ink);border-color:var(--gold)}
+.band{background:var(--paper-2);border-block:1px solid var(--line)}
+
+/* ---------- news ---------- */
+.news-grid{display:grid;grid-template-columns:minmax(0,1fr) 272px;gap:34px}
+@media (max-width:860px){.news-grid{grid-template-columns:minmax(0,1fr)}}
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--line);margin-bottom:4px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{
+  font:inherit;font-size:13px;cursor:pointer;background:none;border:0;
+  padding:9px 16px;color:var(--muted);white-space:nowrap;
+  border-bottom:2px solid transparent;margin-bottom:-2px;
+}
+.tabs button[aria-pressed="true"]{color:var(--navy);font-weight:700;border-bottom-color:var(--gold)}
+.news li{border-bottom:1px solid var(--line)}
+.news a{
+  display:grid;grid-template-columns:96px 74px minmax(0,1fr);gap:14px;align-items:baseline;
+  text-decoration:none;padding-block:13px;
+}
+@media (max-width:620px){
+  .news a{grid-template-columns:96px 74px;row-gap:5px}
+  .news .n-title{grid-column:1 / -1}
+}
+.news time{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.03em}
+.badge{
+  font-size:10.5px;font-weight:700;letter-spacing:.08em;text-align:center;
+  padding:3px 0;border:1px solid var(--line);color:var(--muted);background:var(--paper-2);
+}
+.badge.important{color:var(--crimson);border-color:var(--crimson);background:transparent}
+.badge.admission{color:var(--gold);border-color:var(--gold);background:transparent}
+.n-title{font-size:14px;line-height:1.65}
+.news a:hover .n-title{color:var(--navy);text-decoration:underline}
+
+/* sidebar */
+.side-card{border:1px solid var(--line);background:var(--paper);margin-bottom:16px}
+.side-card h3{
+  font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.12em;
+  background:var(--navy);color:#fff;padding:9px 14px;
+}
+:root[data-theme="dark"] .side-card h3,
+:root:not([data-theme="light"]) .side-card h3{color:var(--navy-deep)}
+.side-card .body{padding:13px 14px}
+.linklist li+li{margin-top:9px;padding-top:9px;border-top:1px dotted var(--line)}
+.linklist a{font-size:13px;text-decoration:none;display:flex;gap:8px;align-items:flex-start}
+.linklist a::before{content:"▸";color:var(--gold);font-size:11px;line-height:1.7;flex:none}
+.linklist a:hover{text-decoration:underline}
+.dl{font-size:13px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 12px}
+.dl dt{color:var(--muted);font-size:12px}
+.dl dd{margin:0}
+
+/* ---------- academic calendar ---------- */
+.cal-note{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+.cal-scroll{overflow-x:auto;border:1px solid var(--line);background:var(--paper)}
+table.cal{width:100%;border-collapse:collapse;min-width:620px;font-size:13.5px}
+table.cal caption{
+  text-align:left;font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.12em;
+  padding:10px 14px;background:var(--paper-3);border-bottom:1px solid var(--line);color:var(--navy);
+}
+table.cal th,table.cal td{padding:10px 14px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+table.cal thead th{
+  font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);
+  background:var(--paper-2);border-bottom:2px solid var(--line);white-space:nowrap;
+}
+table.cal tbody tr:last-child th,table.cal tbody tr:last-child td{border-bottom:0}
+table.cal tbody tr:hover{background:var(--paper-2)}
+.c-date{white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:.02em;color:var(--navy);font-weight:500;width:160px}
+.c-tag{white-space:nowrap;width:92px}
+.c-tag span{font-size:10.5px;letter-spacing:.06em;color:var(--muted);border:1px solid var(--line);padding:2px 7px}
+.c-tag span.key{color:var(--crimson);border-color:var(--crimson)}
+.c-tag span.rest{color:var(--gold);border-color:var(--gold)}
+
+/* ---------- faculties ---------- */
+.fac{display:grid;grid-template-columns:repeat(auto-fit,minmax(196px,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.fac a{
+  background:var(--paper);padding:20px 18px;text-decoration:none;display:block;
+  transition:background .15s;min-width:0;
+}
+.fac a:hover{background:var(--paper-2)}
+.fac .num{font-size:10px;letter-spacing:.2em;color:var(--gold);font-weight:700}
+.fac h3{font-size:17px;letter-spacing:.08em;margin-top:7px}
+.fac p{font-size:12.5px;color:var(--muted);margin-top:8px;line-height:1.7}
+
+/* ---------- student council ---------- */
+.council{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:34px;align-items:start}
+@media (max-width:860px){.council{grid-template-columns:minmax(0,1fr)}}
+.council-lead p{font-size:13.5px;color:var(--muted);margin-top:14px;line-height:1.85}
+.roster{border:1px solid var(--line);background:var(--paper)}
+.roster h3{
+  font-family:var(--sans);font-size:12px;font-weight:700;letter-spacing:.12em;
+  padding:10px 16px;background:var(--paper-3);border-bottom:1px solid var(--line);color:var(--navy);
+}
+.roster li{display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:12px;align-items:baseline;padding:11px 16px}
+.roster li+li{border-top:1px solid var(--line)}
+@media (max-width:520px){
+  .roster li{grid-template-columns:minmax(0,1fr) auto}
+  .roster .post{grid-column:1 / -1}
+}
+.roster .post{font-size:11.5px;letter-spacing:.08em;color:var(--muted)}
+.roster .name{font-family:var(--serif);font-size:16px;letter-spacing:.09em}
+.roster .dept{font-size:11.5px;color:var(--muted);text-align:right;white-space:nowrap}
+
+/* ---------- banners ---------- */
+.banners{display:grid;grid-template-columns:repeat(auto-fit,minmax(238px,1fr));gap:13px}
+.bn{
+  position:relative;display:block;text-decoration:none;overflow:hidden;min-width:0;
+  aspect-ratio:16/6.4;border:1px solid rgba(255,255,255,.14);
+}
+.bn .motif{position:absolute;inset:0;width:100%;height:100%;display:block}
+.bn .bn-text{
+  position:relative;z-index:2;height:100%;padding:15px 17px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.bn .bn-ja{
+  font-family:var(--serif);font-size:17px;font-weight:700;letter-spacing:.08em;
+  color:#fff;text-shadow:0 1px 12px rgba(0,0,0,.45);line-height:1.35;
+}
+.bn .bn-en{font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-top:6px}
+.bn .bn-meta{font-size:11px;color:rgba(255,255,255,.82);margin-top:6px;font-variant-numeric:tabular-nums}
+.bn .arrow{
+  position:absolute;right:13px;bottom:11px;z-index:2;
+  font-size:11px;color:rgba(255,255,255,.75);letter-spacing:.1em;
+}
+.bn::after{content:"";position:absolute;inset:0;z-index:1;background:rgba(0,0,0,0);transition:background .18s}
+.bn:hover::after{background:rgba(255,255,255,.1)}
+.bn:hover .bn-ja{text-decoration:underline;text-underline-offset:3px}
+.bn.b1{background:linear-gradient(132deg,#8a2832 0%,#4d141d 100%)}
+.bn.b2{background:linear-gradient(132deg,#23386a 0%,#0f1c3a 100%)}
+.bn.b3{background:linear-gradient(132deg,#3b4a7a 0%,#1a2242 100%)}
+.bn.b4{background:linear-gradient(132deg,#1f4a46 0%,#0d2420 100%)}
+.bn.b5{background:linear-gradient(132deg,#55504a 0%,#262320 100%)}
+.bn.b6{background:linear-gradient(132deg,#7a5c1f 0%,#3a2a0c 100%)}
+
+/* ---------- access ---------- */
+.access{display:grid;grid-template-columns:repeat(auto-fit,minmax(224px,1fr));gap:26px}
+.access h3{font-size:15px;letter-spacing:.08em;padding-bottom:8px;border-bottom:1px solid var(--line);margin-bottom:11px}
+.access p,.access li{font-size:13px;color:var(--muted);line-height:1.85}
+.access .rail li{padding-left:15px;position:relative}
+.access .rail li::before{content:"—";position:absolute;left:0;color:var(--gold)}
+
+/* ---------- footer ---------- */
+footer{background:var(--navy-deep);color:#c6cee2;margin-top:0}
+footer .wrap{padding-block:34px}
+.f-top{display:grid;grid-template-columns:minmax(0,1.1fr) repeat(auto-fit,minmax(130px,1fr));gap:28px}
+.f-brand .brand-ja{color:#fff;font-size:21px}
+.f-brand .brand-en{color:rgba(255,255,255,.52)}
+.f-brand address{font-style:normal;font-size:12.5px;line-height:1.9;margin-top:13px;color:rgba(255,255,255,.72)}
+.f-col h4{font-family:var(--sans);font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--gold);margin-bottom:11px}
+.f-col li{margin-bottom:7px}
+.f-col a{font-size:12.5px;text-decoration:none;color:rgba(255,255,255,.78)}
+.f-col a:hover{color:#fff;text-decoration:underline}
+.f-bottom{
+  margin-top:28px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:11px;color:rgba(255,255,255,.48);
+}
+.f-note{font-size:10.5px;color:rgba(255,255,255,.34);line-height:1.7;max-width:46em}
+</style>
+
+<div class="utility">
+  <div class="wrap">
+    <a href="#" data-ja="在学生の方" data-ko="재학생">在学生の方</a>
+    <a href="#" data-ja="保護者の方" data-ko="학부모">保護者の方</a>
+    <a href="#" data-ja="卒業生の方" data-ko="졸업생">卒業生の方</a>
+    <a href="#access" data-ja="アクセス" data-ko="오시는 길">アクセス</a>
+    <a href="#" data-ja="お問い合わせ" data-ko="문의">お問い合わせ</a>
+    <div class="langs" role="group" aria-label="Language">
+      <button type="button" id="lang-ja" aria-pressed="true">日本語</button>
+      <button type="button" id="lang-ko" aria-pressed="false">한국어</button>
+    </div>
+  </div>
+</div>
+
+<header class="masthead">
+  <div class="wrap">
+    <a class="brand" href="#">
+      <svg class="crest" viewBox="0 0 64 64" role="img" aria-label="久楽大学 校章">
+        <circle cx="32" cy="32" r="30" fill="none" stroke="currentColor" stroke-width="1.4" opacity=".55"/>
+        <circle cx="32" cy="32" r="25" fill="none" stroke="currentColor" stroke-width="2.6"/>
+        <path d="M50.35 50.35 L52.47 52.47 M13.65 50.35 L11.53 52.47 M13.65 13.65 L11.53 11.53 M50.35 13.65 L52.47 11.53"
+              fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" opacity=".5"/>
+        <text x="32" y="44.5" text-anchor="middle" font-family="Noto Serif JP, serif"
+              font-size="33" font-weight="700" fill="currentColor">久</text>
+      </svg>
+      <span class="brand-text">
+        <span class="brand-ja">久楽大学</span>
+        <span class="brand-en">Kuraku University</span>
+      </span>
+    </a>
+    <div class="masthead-right">
+      <form class="searchbox" onsubmit="event.preventDefault()">
+        <label class="sr" for="site-search" hidden>サイト内検索</label>
+        <input id="site-search" type="search" placeholder="サイト内検索" data-ja-ph="サイト内検索" data-ko-ph="사이트 내 검색">
+        <button type="submit" data-ja="検索" data-ko="검색">検索</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<nav class="nav" aria-label="メインメニュー">
+  <div class="wrap">
+    <a href="#" data-ja="大学案内" data-ko="대학 안내">大学案内</a>
+    <a href="#faculties" data-ja="学部・大学院" data-ko="학부·대학원">学部・大学院</a>
+    <a href="#" data-ja="入試情報" data-ko="입시 정보">入試情報</a>
+    <a href="#campus" data-ja="学生生活" data-ko="학생 생활">学生生活</a>
+    <a href="#calendar" data-ja="学年暦" data-ko="학사일정">学年暦</a>
+    <a href="#" data-ja="就職・進路" data-ko="취업·진로">就職・進路</a>
+    <a href="#" data-ja="図書館" data-ko="도서관">図書館</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="wrap">
+    <div class="hero-kicker">Kuraku University &nbsp;/&nbsp; Since 1952</div>
+    <h1 data-ja="知を、楽しむ。" data-ko="배움을, 즐겁게.">知を、楽しむ。</h1>
+    <p data-ja="久楽大学は、千葉県久楽市に五学部を置く私立総合大学です。少人数のゼミナールを軸に、学問の面白さに正面から向き合う学びの場をつくっています。"
+       data-ko="쿠라쿠 대학은 치바현 쿠라쿠시에 다섯 개 학부를 둔 사립 종합대학입니다. 소규모 세미나를 중심으로, 학문의 재미와 정면으로 마주하는 배움의 장을 만들고 있습니다.">
+      久楽大学は、千葉県久楽市に五学部を置く私立総合大学です。少人数のゼミナールを軸に、学問の面白さに正面から向き合う学びの場をつくっています。
+    </p>
+    <div class="hero-actions">
+      <a class="solid" href="#calendar" data-ja="2026年度 学年暦" data-ko="2026년도 학사일정">2026年度 学年暦</a>
+      <a href="#news" data-ja="お知らせ一覧" data-ko="공지사항">お知らせ一覧</a>
+      <a href="#campus" data-ja="総学生会" data-ko="총학생회">総学生会</a>
+    </div>
+  </div>
+</div>
+
+<section id="news">
+  <div class="wrap">
+    <div class="news-grid">
+      <div>
+        <div class="sec-head">
+          <div class="sec-title">
+            <h2 data-ja="お知らせ" data-ko="공지사항">お知らせ</h2>
+            <span class="en">News</span>
+          </div>
+          <a class="more" href="#" data-ja="一覧を見る" data-ko="전체 보기">一覧を見る</a>
+        </div>
+
+        <div class="tabs" role="group" aria-label="カテゴリ">
+          <button type="button" data-filter="all" aria-pressed="true" data-ja="すべて" data-ko="전체">すべて</button>
+          <button type="button" data-filter="important" aria-pressed="false" data-ja="重要" data-ko="중요">重要</button>
+          <button type="button" data-filter="student" aria-pressed="false" data-ja="学生" data-ko="학생">学生</button>
+          <button type="button" data-filter="academic" aria-pressed="false" data-ja="教務" data-ko="교무">教務</button>
+          <button type="button" data-filter="admission" aria-pressed="false" data-ja="入試" data-ko="입시">入試</button>
+        </div>
+
+        <ul class="news" id="news-list">
+          <li data-cat="student">
+            <a href="#">
+              <time datetime="2026-10-24">2026.10.24</time>
+              <span class="badge" data-ja="学生" data-ko="학생">学生</span>
+              <span class="n-title" data-ja="次期総学生会執行部選挙 立候補者の公示について"
+                    data-ko="차기 총학생회 집행부 선거 입후보자 공시 안내">次期総学生会執行部選挙 立候補者の公示について</span>
+            </a>
+          </li>
+          <li data-cat="academic">
+            <a href="#">
+              <time datetime="2026-10-22">2026.10.22</time>
+              <span class="badge" data-ja="教務" data-ko="교무">教務</span>
+              <span class="n-title" data-ja="後期期末レポート 提出期間および提出方法のお知らせ"
+                    data-ko="후기 기말 리포트 제출 기간 및 제출 방법 안내">後期期末レポート 提出期間および提出方法のお知らせ</span>
+            </a>
+          </li>
+          <li data-cat="student">
+            <a href="#">
+              <time datetime="2026-10-20">2026.10.20</time>
+              <span class="badge" data-ja="学生" data-ko="학생">学生</span>
+              <span class="n-title" data-ja="ハロウィン企画（10/31）参加団体を募集します"
+                    data-ko="할로윈 기획(10/31) 참가 단체를 모집합니다">ハロウィン企画（10/31）参加団体を募集します</span>
+            </a>
+          </li>
+          <li data-cat="important">
+            <a href="#">
+              <time datetime="2026-10-17">2026.10.17</time>
+              <span class="badge important" data-ja="重要" data-ko="중요">重要</span>
+              <span class="n-title" data-ja="第74回 久楽祭 開催概要を公開しました（11/21・11/22）"
+                    data-ko="제74회 쿠라쿠 축제 개최 개요를 공개했습니다 (11/21·11/22)">第74回 久楽祭 開催概要を公開しました（11/21・11/22）</span>
+            </a>
+          </li>
+          <li data-cat="student">
+            <a href="#">
+              <time datetime="2026-10-14">2026.10.14</time>
+              <span class="badge" data-ja="学生" data-ko="학생">学生</span>
+              <span class="n-title" data-ja="総学生会執行部内規（2026年度改定）を公開しました"
+                    data-ko="총학생회 집행부 내규(2026년도 개정)를 공개했습니다">総学生会執行部内規（2026年度改定）を公開しました</span>
+            </a>
+          </li>
+          <li data-cat="admission">
+            <a href="#">
+              <time datetime="2026-10-10">2026.10.10</time>
+              <span class="badge admission" data-ja="入試" data-ko="입시">入試</span>
+              <span class="n-title" data-ja="2027年度 一般選抜 学生募集要項を公開しました"
+                    data-ko="2027년도 일반 선발 학생 모집 요강을 공개했습니다">2027年度 一般選抜 学生募集要項を公開しました</span>
+            </a>
+          </li>
+          <li data-cat="academic">
+            <a href="#">
+              <time datetime="2026-10-03">2026.10.03</time>
+              <span class="badge" data-ja="教務" data-ko="교무">教務</span>
+              <span class="n-title" data-ja="中央図書館 後期開館時間の変更について"
+                    data-ko="중앙도서관 후기 개관 시간 변경 안내">中央図書館 後期開館時間の変更について</span>
+            </a>
+          </li>
+          <li data-cat="important">
+            <a href="#">
+              <time datetime="2026-09-28">2026.09.28</time>
+              <span class="badge important" data-ja="重要" data-ko="중요">重要</span>
+              <span class="n-title" data-ja="台風接近に伴う休講措置の基準について"
+                    data-ko="태풍 접근에 따른 휴강 조치 기준 안내">台風接近に伴う休講措置の基準について</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <aside>
+        <div class="side-card">
+          <h3 data-ja="在学生向けリンク" data-ko="재학생 링크">在学生向けリンク</h3>
+          <div class="body">
+            <ul class="linklist">
+              <li><a href="#" data-ja="履修登録システム" data-ko="수강신청 시스템">履修登録システム</a></li>
+              <li><a href="#" data-ja="休講・補講情報" data-ko="휴강·보강 정보">休講・補講情報</a></li>
+              <li><a href="#" data-ja="証明書発行" data-ko="증명서 발급">証明書発行</a></li>
+              <li><a href="#" data-ja="学生証再発行" data-ko="학생증 재발급">学生証再発行</a></li>
+              <li><a href="#" data-ja="サークル・部活動" data-ko="동아리 활동">サークル・部活動</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="side-card">
+          <h3 data-ja="窓口時間" data-ko="창구 시간">窓口時間</h3>
+          <div class="body">
+            <dl class="dl">
+              <dt data-ja="教務課" data-ko="교무과">教務課</dt><dd>9:00–17:00</dd>
+              <dt data-ja="学生課" data-ko="학생과">学生課</dt><dd>9:00–17:00</dd>
+              <dt data-ja="図書館" data-ko="도서관">図書館</dt><dd>8:30–22:00</dd>
+              <dt data-ja="土曜" data-ko="토요일">土曜</dt><dd>9:00–13:00</dd>
+            </dl>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <section id="calendar">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title">
+          <h2 data-ja="2026年度 学年暦" data-ko="2026년도 학사일정">2026年度 学年暦</h2>
+          <span class="en">Academic Calendar</span>
+        </div>
+        <a class="more" href="#" data-ja="PDFで見る" data-ko="PDF로 보기">PDFで見る</a>
+      </div>
+      <p class="cal-note"
+         data-ja="学部共通の日程です。学部・学科により一部異なる場合があります。変更が生じた場合は本ページおよび掲示板でお知らせします。"
+         data-ko="학부 공통 일정입니다. 학부·학과에 따라 일부 다를 수 있습니다. 변경 시 본 페이지와 게시판으로 안내합니다.">
+        学部共通の日程です。学部・学科により一部異なる場合があります。変更が生じた場合は本ページおよび掲示板でお知らせします。
+      </p>
+
+      <div class="cal-scroll">
+        <table class="cal">
+          <caption data-ja="後期（2026年10月 – 2027年3月）" data-ko="후기 (2026년 10월 – 2027년 3월)">後期（2026年10月 – 2027年3月）</caption>
+          <thead>
+            <tr>
+              <th data-ja="日程" data-ko="일정">日程</th>
+              <th data-ja="区分" data-ko="구분">区分</th>
+              <th data-ja="行事" data-ko="행사">行事</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="c-date">10/27 – 11/06</td><td class="c-tag"><span data-ja="学生会" data-ko="학생회">学生会</span></td><td data-ja="総学生会執行部選挙 遊説期間" data-ko="총학생회 집행부 선거 유세 기간">総学生会執行部選挙 遊説期間</td></tr>
+            <tr><td class="c-date">10/31</td><td class="c-tag"><span data-ja="行事" data-ko="행사">行事</span></td><td data-ja="ハロウィン企画（久楽祭 広報）" data-ko="할로윈 기획 (쿠라쿠 축제 홍보)">ハロウィン企画（久楽祭 広報）</td></tr>
+            <tr><td class="c-date">11/07</td><td class="c-tag"><span class="key" data-ja="重要" data-ko="중요">重要</span></td><td data-ja="総学生会執行部選挙 投開票" data-ko="총학생회 집행부 선거 투개표">総学生会執行部選挙 投開票</td></tr>
+            <tr><td class="c-date">11/10 – 11/20</td><td class="c-tag"><span data-ja="学生会" data-ko="학생회">学生会</span></td><td data-ja="第74回 久楽祭 準備期間" data-ko="제74회 쿠라쿠 축제 준비 기간">第74回 久楽祭 準備期間</td></tr>
+            <tr><td class="c-date">11/20</td><td class="c-tag"><span data-ja="行事" data-ko="행사">行事</span></td><td data-ja="久楽祭 前夜祭（中央グラウンド）" data-ko="쿠라쿠 축제 전야제 (중앙 운동장)">久楽祭 前夜祭（中央グラウンド）</td></tr>
+            <tr><td class="c-date">11/21 – 11/22</td><td class="c-tag"><span class="key" data-ja="重要" data-ko="중요">重要</span></td><td data-ja="第74回 久楽祭" data-ko="제74회 쿠라쿠 축제">第74回 久楽祭</td></tr>
+            <tr><td class="c-date">11/24</td><td class="c-tag"><span class="rest" data-ja="休講" data-ko="휴강">休講</span></td><td data-ja="久楽祭 片付けのため全学休講" data-ko="쿠라쿠 축제 정리로 인한 전학 휴강">久楽祭 片付けのため全学休講</td></tr>
+            <tr><td class="c-date">12/01 – 12/12</td><td class="c-tag"><span data-ja="教務" data-ko="교무">教務</span></td><td data-ja="期末レポート 提出期間" data-ko="기말 리포트 제출 기간">期末レポート 提出期間</td></tr>
+            <tr><td class="c-date">12/24 – 12/25</td><td class="c-tag"><span data-ja="学生会" data-ko="학생회">学生会</span></td><td data-ja="年末当直（学生会室）" data-ko="연말 당직 (학생회실)">年末当直（学生会室）</td></tr>
+            <tr><td class="c-date">12/26 – 01/05</td><td class="c-tag"><span class="rest" data-ja="休業" data-ko="휴업">休業</span></td><td data-ja="冬季休業" data-ko="동계 휴업">冬季休業</td></tr>
+            <tr><td class="c-date">01/26 – 02/06</td><td class="c-tag"><span class="key" data-ja="重要" data-ko="중요">重要</span></td><td data-ja="後期定期試験" data-ko="후기 정기시험">後期定期試験</td></tr>
+            <tr><td class="c-date">02/09 – 04/05</td><td class="c-tag"><span class="rest" data-ja="休業" data-ko="휴업">休業</span></td><td data-ja="春季休業" data-ko="춘계 휴업">春季休業</td></tr>
+            <tr><td class="c-date">03/20</td><td class="c-tag"><span class="key" data-ja="重要" data-ko="중요">重要</span></td><td data-ja="学位授与式（久楽記念講堂）" data-ko="학위수여식 (쿠라쿠 기념 강당)">学位授与式（久楽記念講堂）</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cal-scroll" style="margin-top:18px">
+        <table class="cal">
+          <caption data-ja="前期（2027年4月 – 7月）" data-ko="전기 (2027년 4월 – 7월)">前期（2027年4月 – 7月）</caption>
+          <thead>
+            <tr>
+              <th data-ja="日程" data-ko="일정">日程</th>
+              <th data-ja="区分" data-ko="구분">区分</th>
+              <th data-ja="行事" data-ko="행사">行事</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="c-date">04/06</td><td class="c-tag"><span class="key" data-ja="重要" data-ko="중요">重要</span></td><td data-ja="入学式・前期授業開始" data-ko="입학식·전기 수업 시작">入学式・前期授業開始</td></tr>
+            <tr><td class="c-date">04/17</td><td class="c-tag"><span data-ja="学生会" data-ko="학생회">学生会</span></td><td data-ja="新入生歓迎会（久楽記念講堂）" data-ko="신입생 환영회 (쿠라쿠 기념 강당)">新入生歓迎会（久楽記念講堂）</td></tr>
+            <tr><td class="c-date">04/29 – 05/06</td><td class="c-tag"><span class="rest" data-ja="休業" data-ko="휴업">休業</span></td><td data-ja="ゴールデンウィーク休業" data-ko="골든위크 휴업">ゴールデンウィーク休業</td></tr>
+            <tr><td class="c-date">06/08 – 06/19</td><td class="c-tag"><span data-ja="教務" data-ko="교무">教務</span></td><td data-ja="前期中間レポート 提出期間" data-ko="전기 중간 리포트 제출 기간">前期中間レポート 提出期間</td></tr>
+            <tr><td class="c-date">07/17</td><td class="c-tag"><span class="key" data-ja="重要" data-ko="중요">重要</span></td><td data-ja="総学生会 引継式（執行部交代）" data-ko="총학생회 인수인계식 (집행부 교대)">総学生会 引継式（執行部交代）</td></tr>
+            <tr><td class="c-date">07/25</td><td class="c-tag"><span data-ja="地域" data-ko="지역">地域</span></td><td data-ja="久楽市 夏祭り（後援）" data-ko="쿠라쿠시 여름 축제 (후원)">久楽市 夏祭り（後援）</td></tr>
+            <tr><td class="c-date">07/27 –</td><td class="c-tag"><span class="rest" data-ja="休業" data-ko="휴업">休業</span></td><td data-ja="夏季休業" data-ko="하계 휴업">夏季休業</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="faculties">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-title">
+        <h2 data-ja="学部・大学院" data-ko="학부·대학원">学部・大学院</h2>
+        <span class="en">Faculties</span>
+      </div>
+    </div>
+    <div class="fac">
+      <a href="#">
+        <span class="num">01</span>
+        <h3 data-ja="文学部" data-ko="문학부">文学部</h3>
+        <p data-ja="日本文学・歴史学・哲学の三学科。二年次からゼミに所属し、原典講読を中心に学びます。"
+           data-ko="일본문학·역사학·철학 세 학과. 2학년부터 세미나에 소속되어 원전 강독을 중심으로 배웁니다.">日本文学・歴史学・哲学の三学科。二年次からゼミに所属し、原典講読を中心に学びます。</p>
+      </a>
+      <a href="#">
+        <span class="num">02</span>
+        <h3 data-ja="法学部" data-ko="법학부">法学部</h3>
+        <p data-ja="法律学科・政治学科。模擬裁判と法律相談室の運営を通じ、実務感覚を養います。"
+           data-ko="법률학과·정치학과. 모의재판과 법률상담실 운영을 통해 실무 감각을 기릅니다.">法律学科・政治学科。模擬裁判と法律相談室の運営を通じ、実務感覚を養います。</p>
+      </a>
+      <a href="#">
+        <span class="num">03</span>
+        <h3 data-ja="経済学部" data-ko="경제학부">経済学部</h3>
+        <p data-ja="経済学科・経営学科。統計処理とフィールド調査を一年次から必修としています。"
+           data-ko="경제학과·경영학과. 통계 처리와 현장 조사를 1학년부터 필수로 합니다.">経済学科・経営学科。統計処理とフィールド調査を一年次から必修としています。</p>
+      </a>
+      <a href="#">
+        <span class="num">04</span>
+        <h3 data-ja="理工学部" data-ko="이공학부">理工学部</h3>
+        <p data-ja="情報科学科・応用化学科・機械工学科。三年次後期から研究室に配属されます。"
+           data-ko="정보과학과·응용화학과·기계공학과. 3학년 후기부터 연구실에 배속됩니다.">情報科学科・応用化学科・機械工学科。三年次後期から研究室に配属されます。</p>
+      </a>
+      <a href="#">
+        <span class="num">05</span>
+        <h3 data-ja="国際教養学部" data-ko="국제교양학부">国際教養学部</h3>
+        <p data-ja="講義の約半数を英語で開講。二年次に一学期間の海外研修を置いています。"
+           data-ko="강의의 약 절반을 영어로 개설. 2학년에 한 학기 해외 연수를 둡니다.">講義の約半数を英語で開講。二年次に一学期間の海外研修を置いています。</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="band">
+  <section id="campus">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="sec-title">
+          <h2 data-ja="総学生会" data-ko="총학생회">総学生会</h2>
+          <span class="en">Student Council</span>
+        </div>
+        <a class="more" href="#" data-ja="執行部内規を見る" data-ko="집행부 내규 보기">執行部内規を見る</a>
+      </div>
+      <div class="council">
+        <div class="council-lead">
+          <p data-ja="総学生会は全学生を会員とする自治組織です。執行部は会員の直接選挙によって選出され、任期は当年8月から翌年7月までの一年間。学生大会の運営、久楽祭をはじめとする全学行事の企画、各サークルへの予算配分を担当します。"
+             data-ko="총학생회는 전체 학생을 회원으로 하는 자치 조직입니다. 집행부는 회원의 직접 선거로 선출되며, 임기는 당해 8월부터 이듬해 7월까지 1년입니다. 학생총회 운영, 쿠라쿠 축제를 비롯한 전학 행사 기획, 각 동아리 예산 배분을 담당합니다.">
+            総学生会は全学生を会員とする自治組織です。執行部は会員の直接選挙によって選出され、任期は当年8月から翌年7月までの一年間。学生大会の運営、久楽祭をはじめとする全学行事の企画、各サークルへの予算配分を担当します。</p>
+          <p data-ja="執行部室は第二学生会館3階。平日の17時以降は在室していることが多く、相談・要望はいつでも受け付けています。"
+             data-ko="집행부실은 제2학생회관 3층. 평일 17시 이후에는 대체로 재실하고 있으며, 상담·요청은 언제든 접수합니다.">
+            執行部室は第二学生会館3階。平日の17時以降は在室していることが多く、相談・要望はいつでも受け付けています。</p>
+        </div>
+        <div class="roster">
+          <h3 data-ja="2026年度 執行部" data-ko="2026년도 집행부">2026年度 執行部</h3>
+          <ul>
+            <li><span class="post" data-ja="会長" data-ko="회장">会長</span><span class="name">月城 玲</span><span class="dept" data-ja="文学部3年" data-ko="문학부 3학년">文学部3年</span></li>
+            <li><span class="post" data-ja="副会長" data-ko="부회장">副会長</span><span class="name">緋野 花恋</span><span class="dept" data-ja="法学部3年" data-ko="법학부 3학년">法学部3年</span></li>
+            <li><span class="post" data-ja="事務局長" data-ko="사무국장">事務局長</span><span class="name">森下 小春</span><span class="dept" data-ja="経済学部3年" data-ko="경제학부 3학년">経済学部3年</span></li>
+            <li><span class="post" data-ja="企画局長" data-ko="기획국장">企画局長</span><span class="name">黒崎 命</span><span class="dept" data-ja="理工学部3年" data-ko="이공학부 3학년">理工学部3年</span></li>
+            <li><span class="post" data-ja="広報局長" data-ko="홍보국장">広報局長</span><span class="name">佐藤 雛</span><span class="dept" data-ja="国際教養学部2年" data-ko="국제교양학부 2학년">国際教養学部2年</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="pickup">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-title">
+        <h2 data-ja="ピックアップ" data-ko="주요 안내">ピックアップ</h2>
+        <span class="en">Pick Up</span>
+      </div>
+    </div>
+    <div class="banners">
+
+      <a class="bn b1" href="#calendar">
+        <svg class="motif" viewBox="0 0 320 128" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke="#fff" stroke-width="1.1" opacity=".3">
+            <path d="M0 26 H320"/>
+            <circle cx="240" cy="40" r="11"/><circle cx="268" cy="40" r="11"/><circle cx="296" cy="40" r="11"/>
+            <path d="M240 26 V29 M268 26 V29 M296 26 V29"/>
+          </g>
+          <g stroke="#fff" stroke-width="1" opacity=".22">
+            <path d="M212 94 l0 -22 M212 94 l-16 -15 M212 94 l16 -15 M212 94 l-21 4 M212 94 l21 4"/>
+          </g>
+          <circle cx="212" cy="94" r="3" fill="#fff" opacity=".4"/>
+          <g fill="#fff" opacity=".07">
+            <rect x="252" y="62" width="80" height="80" transform="rotate(16 292 102)"/>
+          </g>
+        </svg>
+        <div class="bn-text">
+          <span class="bn-ja" data-ja="第74回 久楽祭" data-ko="제74회 쿠라쿠 축제">第74回 久楽祭</span>
+          <span class="bn-en">Kuraku Festival</span>
+          <span class="bn-meta" data-ja="2026.11.21 – 11.22 開催" data-ko="2026.11.21 – 11.22 개최">2026.11.21 – 11.22 開催</span>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="bn b2" href="#">
+        <svg class="motif" viewBox="0 0 320 128" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke="#fff" stroke-width="1.2" opacity=".26">
+            <path d="M232 112 V46 M308 112 V46 M222 46 H318 M226 36 H314"/>
+            <path d="M248 112 V72 H292 V112"/>
+          </g>
+          <g fill="#fff" opacity=".06"><circle cx="270" cy="30" r="52"/></g>
+        </svg>
+        <div class="bn-text">
+          <span class="bn-ja" data-ja="2027年度 入試情報" data-ko="2027년도 입시 정보">2027年度 入試情報</span>
+          <span class="bn-en">Admissions</span>
+          <span class="bn-meta" data-ja="一般選抜 要項 公開中" data-ko="일반 선발 요강 공개 중">一般選抜 要項 公開中</span>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="bn b3" href="#campus">
+        <svg class="motif" viewBox="0 0 320 128" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke="#fff" opacity=".3">
+            <circle cx="272" cy="64" r="38" stroke-width="1.4"/>
+            <circle cx="272" cy="64" r="31" stroke-width="2.4"/>
+          </g>
+          <text x="272" y="76" text-anchor="middle" font-family="Noto Serif JP, serif"
+                font-size="32" font-weight="700" fill="#fff" opacity=".3">久</text>
+        </svg>
+        <div class="bn-text">
+          <span class="bn-ja" data-ja="総学生会" data-ko="총학생회">総学生会</span>
+          <span class="bn-en">Student Council</span>
+          <span class="bn-meta" data-ja="執行部室 第二学生会館3F" data-ko="집행부실 제2학생회관 3F">執行部室 第二学生会館3F</span>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="bn b4" href="#">
+        <svg class="motif" viewBox="0 0 320 128" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="#fff" opacity=".22">
+            <rect x="236" y="48" width="8" height="58"/><rect x="248" y="40" width="11" height="66"/>
+            <rect x="263" y="52" width="7" height="54"/><rect x="274" y="44" width="10" height="62"/>
+            <rect x="288" y="56" width="8" height="50"/><rect x="300" y="46" width="12" height="60"/>
+          </g>
+          <rect x="228" y="106" width="92" height="2.4" fill="#fff" opacity=".3"/>
+        </svg>
+        <div class="bn-text">
+          <span class="bn-ja" data-ja="中央図書館" data-ko="중앙도서관">中央図書館</span>
+          <span class="bn-en">Library</span>
+          <span class="bn-meta" data-ja="平日 8:30 – 22:00" data-ko="평일 8:30 – 22:00">平日 8:30 – 22:00</span>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="bn b5" href="#">
+        <svg class="motif" viewBox="0 0 320 128" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke="#fff" stroke-width="1" opacity=".24">
+            <rect x="228" y="30" width="86" height="68"/>
+            <path d="M228 46 H314 M228 63 H314 M228 80 H314 M250 30 V98 M271 30 V98 M292 30 V98"/>
+          </g>
+          <rect x="271" y="63" width="21" height="17" fill="#fff" opacity=".22"/>
+        </svg>
+        <div class="bn-text">
+          <span class="bn-ja" data-ja="履修登録システム" data-ko="수강신청 시스템">履修登録システム</span>
+          <span class="bn-en">Course Registration</span>
+          <span class="bn-meta" data-ja="在学生専用ポータル" data-ko="재학생 전용 포털">在学生専用ポータル</span>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+      <a class="bn b6" href="#access">
+        <svg class="motif" viewBox="0 0 320 128" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke="#fff" stroke-width="1.1" opacity=".27">
+            <path d="M226 104 H316"/>
+            <path d="M238 104 V58 L262 44 L286 58 V104"/>
+            <path d="M292 104 V70 H312 V104"/>
+            <path d="M250 104 V84 H274 V104"/>
+          </g>
+          <circle cx="262" cy="34" r="4" fill="#fff" opacity=".3"/>
+        </svg>
+        <div class="bn-text">
+          <span class="bn-ja" data-ja="オープンキャンパス" data-ko="오픈 캠퍼스">オープンキャンパス</span>
+          <span class="bn-en">Open Campus</span>
+          <span class="bn-meta" data-ja="次回 2027.03.21（土）" data-ko="다음 회 2027.03.21(토)">次回 2027.03.21（土）</span>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<section id="access">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-title">
+        <h2 data-ja="アクセス" data-ko="오시는 길">アクセス</h2>
+        <span class="en">Access</span>
+      </div>
+    </div>
+    <div class="access">
+      <div>
+        <h3 data-ja="所在地" data-ko="소재지">所在地</h3>
+        <p data-ja="〒279-0041 千葉県久楽市緑が丘1丁目1番地" data-ko="〒279-0041 치바현 쿠라쿠시 미도리가오카 1초메 1번지">〒279-0041 千葉県久楽市緑が丘1丁目1番地</p>
+        <p>TEL 047-000-0000</p>
+      </div>
+      <div>
+        <h3 data-ja="電車でお越しの方" data-ko="전철 이용">電車でお越しの方</h3>
+        <ul class="rail">
+          <li data-ja="JR久楽駅 北口より徒歩12分" data-ko="JR 쿠라쿠역 북쪽 출구에서 도보 12분">JR久楽駅 北口より徒歩12分</li>
+          <li data-ja="東京メトロ緑が丘駅より徒歩8分" data-ko="도쿄메트로 미도리가오카역에서 도보 8분">東京メトロ緑が丘駅より徒歩8分</li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-ja="バスでお越しの方" data-ko="버스 이용">バスでお越しの方</h3>
+        <ul class="rail">
+          <li data-ja="久楽駅前より「大学前」行 約7分" data-ko="쿠라쿠역 앞에서 「대학 앞」행 약 7분">久楽駅前より「大学前」行 約7分</li>
+          <li data-ja="「久楽大学正門」下車すぐ" data-ko="「쿠라쿠대학 정문」 하차 후 바로">「久楽大学正門」下車すぐ</li>
+        </ul>
+      </div>
+      <div>
+        <h3 data-ja="キャンパス" data-ko="캠퍼스">キャンパス</h3>
+        <ul class="rail">
+          <li data-ja="本館・第一講義棟・第二講義棟" data-ko="본관·제1강의동·제2강의동">本館・第一講義棟・第二講義棟</li>
+          <li data-ja="中央図書館／久楽記念講堂" data-ko="중앙도서관 / 쿠라쿠 기념 강당">中央図書館／久楽記念講堂</li>
+          <li data-ja="第二学生会館（総学生会執行部室）" data-ko="제2학생회관 (총학생회 집행부실)">第二学生会館（総学生会執行部室）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-top">
+      <div class="f-brand">
+        <span class="brand-ja">久楽大学</span>
+        <span class="brand-en">Kuraku University</span>
+        <address data-ja="〒279-0041 千葉県久楽市緑が丘1丁目1番地&#10;TEL 047-000-0000（代表）&#10;受付時間 平日 9:00–17:00"
+                 data-ko="〒279-0041 치바현 쿠라쿠시 미도리가오카 1초메 1번지&#10;TEL 047-000-0000 (대표)&#10;접수시간 평일 9:00–17:00">〒279-0041 千葉県久楽市緑が丘1丁目1番地<br>TEL 047-000-0000（代表）<br>受付時間 平日 9:00–17:00</address>
+      </div>
+      <div class="f-col">
+        <h4 data-ja="大学案内" data-ko="대학 안내">大学案内</h4>
+        <ul>
+          <li><a href="#" data-ja="建学の精神" data-ko="건학 정신">建学の精神</a></li>
+          <li><a href="#" data-ja="沿革" data-ko="연혁">沿革</a></li>
+          <li><a href="#" data-ja="情報公開" data-ko="정보 공개">情報公開</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4 data-ja="学生生活" data-ko="학생 생활">学生生活</h4>
+        <ul>
+          <li><a href="#calendar" data-ja="学年暦" data-ko="학사일정">学年暦</a></li>
+          <li><a href="#campus" data-ja="総学生会" data-ko="총학생회">総学生会</a></li>
+          <li><a href="#" data-ja="奨学金" data-ko="장학금">奨学金</a></li>
+        </ul>
+      </div>
+      <div class="f-col">
+        <h4 data-ja="お問い合わせ" data-ko="문의">お問い合わせ</h4>
+        <ul>
+          <li><a href="#" data-ja="教務課" data-ko="교무과">教務課</a></li>
+          <li><a href="#" data-ja="学生課" data-ko="학생과">学生課</a></li>
+          <li><a href="#" data-ja="入試広報課" data-ko="입시홍보과">入試広報課</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="f-bottom">
+      <span>© Kuraku University. All rights reserved.</span>
+      <span class="f-note"
+            data-ja="本サイトは創作作品『先輩は私をおもちゃと呼ぶ』の設定資料として制作された、架空の大学のウェブサイトです。実在の大学・団体とは関係ありません。"
+            data-ko="본 사이트는 창작물 『선배는 나를 장난감이라고 부른다』의 설정 자료로 제작된 가상 대학 웹사이트입니다. 실재하는 대학·단체와 관계없습니다.">本サイトは創作作品『先輩は私をおもちゃと呼ぶ』の設定資料として制作された、架空の大学のウェブサイトです。実在の大学・団体とは関係ありません。</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // ---- language switch ----
+  var btnJa = document.getElementById('lang-ja');
+  var btnKo = document.getElementById('lang-ko');
+
+  function setLang(lang) {
+    var nodes = document.querySelectorAll('[data-ja]');
+    for (var i = 0; i < nodes.length; i++) {
+      var el = nodes[i];
+      var text = lang === 'ko' ? el.getAttribute('data-ko') : el.getAttribute('data-ja');
+      if (text === null) continue;
+      if (text.indexOf('\n') !== -1) {
+        el.innerHTML = '';
+        var parts = text.split('\n');
+        for (var p = 0; p < parts.length; p++) {
+          if (p > 0) el.appendChild(document.createElement('br'));
+          el.appendChild(document.createTextNode(parts[p]));
+        }
+      } else {
+        el.textContent = text;
+      }
+    }
+    var ph = document.querySelectorAll('[data-ja-ph]');
+    for (var j = 0; j < ph.length; j++) {
+      ph[j].placeholder = lang === 'ko'
+        ? ph[j].getAttribute('data-ko-ph')
+        : ph[j].getAttribute('data-ja-ph');
+    }
+    btnJa.setAttribute('aria-pressed', String(lang === 'ja'));
+    btnKo.setAttribute('aria-pressed', String(lang === 'ko'));
+    document.documentElement.lang = lang === 'ko' ? 'ko' : 'ja';
+    try { localStorage.setItem('kuraku-lang', lang); } catch (e) {}
+  }
+
+  btnJa.addEventListener('click', function () { setLang('ja'); });
+  btnKo.addEventListener('click', function () { setLang('ko'); });
+
+  try {
+    var saved = localStorage.getItem('kuraku-lang');
+    if (saved === 'ko') setLang('ko');
+  } catch (e) {}
+
+  // ---- news category filter ----
+  var tabs = document.querySelectorAll('.tabs button');
+  var items = document.querySelectorAll('#news-list li');
+
+  function filter(cat) {
+    for (var i = 0; i < items.length; i++) {
+      items[i].hidden = !(cat === 'all' || items[i].getAttribute('data-cat') === cat);
+    }
+    for (var t = 0; t < tabs.length; t++) {
+      tabs[t].setAttribute('aria-pressed', String(tabs[t].getAttribute('data-filter') === cat));
+    }
+  }
+
+  for (var t = 0; t < tabs.length; t++) {
+    (function (btn) {
+      btn.addEventListener('click', function () { filter(btn.getAttribute('data-filter')); });
+    })(tabs[t]);
+  }
+})();
+</script>
